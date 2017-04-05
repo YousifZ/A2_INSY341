@@ -58,13 +58,19 @@ function gameLogic(){
 	console.log(number);
 
 	
-	tries = 0;
+	tries = 7;
 
 	document.getElementById("current_game").innerHTML = message;
 
 	var foundNumber = false;
 
 	while(!foundNumber){
+
+		if(tries == 0){
+			document.getElementById("current_game").innerHTML += "You used up all your tries! The correct number was " + number;
+			break;
+		}
+
 		var guess = prompt("Please enter your guess");
 		if(guess == number){
 			document.getElementById("current_game").innerHTML += "Congratulations! You win! <br>";
@@ -81,13 +87,7 @@ function gameLogic(){
 			document.getElementById("current_game").innerHTML += "Too big, guess again <br>";
 		}
 
-		if(tries == 0){
-			document.getElementById("current_game").innerHTML += "You used up all your tries! The correct number was " + number;
-		}
-
 	}
-
-
 }
 
 function reset(){
@@ -97,6 +97,10 @@ function reset(){
 	document.getElementById("but").innerHTML = "Start a new game";
 	document.getElementById("but").onclick = gameLogic;
 
+}
+
+function insert(text){
+	document.getElementById("current_game").innerHTML += text + "<br>";
 }
 
 
