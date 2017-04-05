@@ -1,0 +1,20 @@
+/*General*/
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.header{
+	background: lightgrey;
+	border-bottom: solid black;
+
+	margin: 0px;
+	padding-left: 2%;
+	padding-top: 1%;
+}
+
+.header h1{
+	margin-top: 0px;
+	padding-top: 0px;
+}
