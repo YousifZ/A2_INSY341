@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	 <meta charset="utf-8">
+	 <title>Assignment 2</title>
+	 <link rel = "stylesheet" type= "text/css" href= "../style.css">
+
+</head>
+
+<body>
+
+
+<!-- The <tr> element defines a table row, the <th> element defines a table header, and the <td> element defines a table cell. 
+x.png
+o.png
+-->
+
+	<header class = "header">
+		<h1>A2 - Q2 Tic Tac Toe</h1>
+		<h2 style="font-style: italic">Alex and Shehryar</h2>
+		<a href = "../index.html">Previous Page </a>
+	</header>
+
+	<content>
+
+	<table>
+	<tr id = "row-1">
+		<td class = "cell" id= "1-1" onclick = "game('1-1')"></td>
+		<td class = "cell" id= "1-2" onclick = "game('1-2')"></td>
+		<td class = "cell" id= "1-3" onclick = "game('1-3')"></td>
+	</tr>
+	
+	<tr id = "row-2">
+		<td class = "cell" id= "2-1" onclick = "game('2-1')"></td>
+		<td class = "cell" id= "2-2" onclick = "game('2-2')"></td>
+		<td class = "cell" id= "2-3" onclick = "game('2-3')"></td>
+	</tr>
+	
+	<tr>
+		<td class = "cell" id= "3-1" onclick = "game('3-1')"></td>
+		<td class = "cell" id= "3-2" onclick = "game('3-2')"></td>
+		<td class = "cell" id= "3-3" onclick = "game('3-3')"></td>
+	</tr id = "row-3">
+
+
+	</table>
+
+
+	<button onclick = "reset()">Clear Board</button>
+
+
+	</content>
+
+
+</body>
+
+
+
+<script>
+
+var board = {
+
+	values: [
+		["","",""],
+		["","",""],
+		["","",""],
+	],
+
+ 	 xTurn: false
+
+}
+
+
+function game(id){
+
+
+	var state = document.getElementById(id).className;
+	var win = checkWin(false);
+	
+	console.log((state =="cell"));
+
+	if(board.xTurn == true && (state == "cell") && !win){
+		console.log("x");
+		board.xTurn = false;
+		document.getElementById(id).className = "cell_x"
+		checkWin(true);
+	}
+	else if(board.xTurn != true && (state =="cell") && !win){
+		console.log("o");
+		board.xTurn = true;
+		document.getElementById(id).className = "cell_o"
+		checkWin(true);
+	}
+
+	
+
+}
+
+
+function checkWin(send){
+
+	var win = false;
+
+
+	if(!win){
+
+	for(i = 0 ; i < board.values.length; i++){
+		for(j = 0 ; j < board.values.length; j ++){
+
+			state = document.getElementById((i+1)+"-"+(j+1)).className;
+			if(state == "cell_x"){
+				board.values[i][j] = "x";			
+			}
+
+			else if(state == "cell_o"){
+				board.values[i][j] = "o";
+			}
+		}
+	}
+
+	console.log(board.values);
+
+
+	//Checks for horizontal values
+
+	for(i = 0 ; i < 3; i++){
+		if( (board.values[i][0] == board.values[i][1]) &&
+		 (board.values[i][0] == board.values[i][2]) &&
+		 (board.values[i][1] != "") ){
+			if(board.values[i][0] == "x"){
+				console.log("A");
+				sendAlert(send,"X Wins the match!");
+				win = true;
+			}
+			else if((board.values[i][0] == board.values[i][1]) &&
+		 	(board.values[i][0] == board.values[i][2]) &&
+		 	(board.values[i][1] != "")){
+		 		console.log("B");
+				sendAlert(send,"O Wins the match!");
+			win = true;
+			}
+		}
+	}
+
+	//Checks for vertical values
+
+	for(i = 0 ; i < 3; i++){
+		if( (board.values[0][i] == board.values[1][i]) &&
+		 (board.values[0][i] == board.values[2][i]) &&
+		 (board.values[1][i] != "") ){
+			if(board.values[0][i] == "x"){
+				console.log("C");
+				sendAlert(send,"X Wins the match!");
+				win = true;
+			}
+			else if((board.values[0][i] == board.values[1][i]) &&
+		 	(board.values[0][i] == board.values[2][i]) &&
+		 	(board.values[1][i] != "")){
+		 		console.log("D");
+				sendAlert(send,"O Wins the match!");
+			win = true;
+			}
+		}
+	}
+
+
+	var array = board.values;
+
+	//checks for diagonal
+	if(
+		(
+			(array[0][0] == array[1][1]) &&
+			(array[2][2] == array[1][1]) &&
+			(array[0][0] != "")
+		) ||
+		(
+			(array[0][2] == array[1][1]) &&
+			(array[2][0] == array[1][1]) &&
+			(array[2][0] != "")
+		)
+	){
+		if(array[1][1] == "x"){
+			sendAlert(true,"X Wins the match!");
+			win = true;
+		}
+		else{
+			sendAlert(true,"O Wins the match!");
+			win = true;
+		}
+	}
+
+	return win;
+
+	}
+
+function sendAlert(boolVal, message){
+	if(boolVal){
+		alert(message);
+	}
+}
+
+}
+
+function reset(){
+	console.log("reset");
+
+	for(i = 0 ; i < board.values.length; i++){
+		for(j = 0 ; j < board.values.length; j ++){
+			document.getElementById((i+1)+"-"+(j+1)).className = "cell";
+			board.values[i][j] = "";
+		}
+	}
+}
+
+
+</script>

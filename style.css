@@ -18,3 +18,46 @@ body{
 	margin-top: 0px;
 	padding-top: 0px;
 }
+
+
+
+
+/*FOR TIC TAC TOE */
+
+table{
+
+	margin-left: auto;
+	margin-right: 37.5%;
+	margin-top: 5%;
+
+	border: solid black;
+	width: 500px;
+	height: 500px;
+}
+
+
+.cell{
+	border: solid grey;
+	background: white;
+}
+
+.cell_x{
+	border: solid grey;
+	background-image: url("./p2/x.png");
+	background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+
+.cell_o{
+	border: solid grey;
+	background-image: url("./p2/o.png");
+	background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+
+
+
