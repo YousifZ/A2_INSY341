@@ -77,25 +77,26 @@ function gameLogic(){
 	console.log(number);
 
 
-
-	
-
-
 		var guess = document.getElementById("guessBox").value;
+
+
 
 		if(gameOver){
 			alert("You have either won or used all of your tries, please try again");
 		}
+		else if(guess == number){
+				document.getElementById("current_game").innerHTML += "Guess #" + (7-tries) + " was " + guess + "<br>";
+				document.getElementById("current_game").innerHTML += "Congratulations! You win! <br>";
+				gameOver = true;
+			}
+
 		else if(tries == 0){
+			document.getElementById("current_game").innerHTML += "Guess #7 was " + guess + "<br>";
 			document.getElementById("current_game").innerHTML += "You used up all your tries! The correct number was " + number;
 			gameOver = true;
 		}
 		else{
-			if(guess == number){
-				document.getElementById("current_game").innerHTML += "Congratulations! You win! <br>";
-				gameOver = true;
-			}
-			else if(guess<number){
+			if(guess<number){
 				tries--;
 				document.getElementById("current_game").innerHTML += "Guess #" + (6-tries) + " was " + guess + "<br>";
 				document.getElementById("current_game").innerHTML += "Too small, guess again <br>";
@@ -109,6 +110,9 @@ function gameLogic(){
 		}
 
 		message = "You have " + (tries) + " tries left <br>";
+		if(tries == 1){
+			message = "You have " + (tries) + " try left <br>";
+		}
 	
 }
 
