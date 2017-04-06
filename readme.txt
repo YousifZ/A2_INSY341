@@ -1,4 +1,5 @@
 Assignment 2
 
 
-Alexandre Perron
+Alexandre Perron - 260634017
+Shehryar Badjwa 
