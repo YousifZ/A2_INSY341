@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	 <meta charset="utf-8">
+	 <title>Assignment 2</title>
+	 <link rel = "stylesheet" type= "text/css" href= "../style.css">
+
+</head>
+
+<body>
+
+	<header class = "header">
+
+	<h1>A2 - Q1 Number Guessing Game</h1>
+	<h2 style="font-style: italic">Alex and Shehryar</h2>
+	<a href = "../index.html">Previous Page </a>
+
+	</header>
+
+	<content>
+
+	<p id ="txt_box">Welcome to the guessing game<br>I'll pick a number between 1 and 100 and you try to guess what it is<br></p>
+	<p id = "current_game"></p>
+
+
+	<button onclick = "gameLogic()" id = "but" >Start a new game</button>
+
+
+	</content>
+
+	<footer>
+	</footer>
+
+
+
+
+
+</body>
+
+<script>
+
+var tries = 0;
+var number = null;
+var message = "You have " + (7-tries) + " tries left <br>";
+
+
+function gameLogic(){
+
+	document.getElementById("current_game").innerHTML = "";
+
+	document.getElementById("but").innerHTML = "Reset";
+	document.getElementById("but").onclick = reset;
+
+
+	var  number = Math.floor( 101 * Math.random() );
+	console.log("Game Started");
+	console.log(number);
+
+	
+	tries = 7;
+
+	document.getElementById("current_game").innerHTML = message;
+
+	var foundNumber = false;
+
+	while(!foundNumber){
+
+		if(tries == 0){
+			document.getElementById("current_game").innerHTML += "You used up all your tries! The correct number was " + number;
+			break;
+		}
+
+		var guess = prompt("Please enter your guess");
+		if(guess == number){
+			document.getElementById("current_game").innerHTML += "Congratulations! You win! <br>";
+			break;
+		}
+		else if(guess<number){
+			tries--;
+			document.getElementById("current_game").innerHTML += "Guess #" + (7-tries) + " was " + guess + "<br>";
+			document.getElementById("current_game").innerHTML += "Too small, guess again <br>";
+		}
+		else{
+			tries--;
+			document.getElementById("current_game").innerHTML += "Guess #" + (7-tries) + " was " + guess + "<br>";
+			document.getElementById("current_game").innerHTML += "Too big, guess again <br>";
+		}
+
+	}
+}
+
+function reset(){
+
+	document.getElementById("current_game").innerHTML = "";
+
+	document.getElementById("but").innerHTML = "Start a new game";
+	document.getElementById("but").onclick = gameLogic;
+
+}
+
+function insert(text){
+	document.getElementById("current_game").innerHTML += text + "<br>";
+}
+
+
+
+</script>
+
+</html>
